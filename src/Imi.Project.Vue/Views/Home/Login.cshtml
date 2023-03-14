@@ -1,0 +1,58 @@
+﻿
+
+<div id="app" class="d-flex justify-content-center align-items-center p-2 login-container">
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-5">Login</h1>
+            <div class="form-outline mb-4">
+                <input type="email" id="loginName" class="form-control" v-model="loginName" />
+                <label class="form-label" for="loginName">Email or username</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="loginPassword" class="form-control" v-model="loginPassword" />
+                <label class="form-label" for="loginPassword">Password</label>
+            </div>
+
+            <!-- Submit button -->
+            <button class="btn btn-primary btn-block mb-4" v-on:click="login">Sign in</button>
+
+            <div class="text-center">
+                <p>Not a member? <a href="#!">Register</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/lib/vue/vue.js"></script>
+    <script src="~/lib/axios/axios.min.js"></script>
+
+    <script>
+        const apiUrl = 'https://localhost:5001/api/accounts/login';
+
+        const app = new Vue({
+            el:'#app',
+            data: {
+                loginName: null,
+                loginPassword: null
+            },
+            methods: {
+                login:function () {
+                    const auth = { login: this.loginName, password: this.loginPassword };
+
+                    console.log(auth);
+
+                    axios.post(apiUrl, auth)
+                        .then(function (response) {
+                            const data = response.data;
+                            sessionStorage.setItem("token", data.token);
+                            sessionStorage.setItem("refreshToken", data.refreshToken);
+                            sessionStorage.setItem("expiration", data.expiration);
+                        });
+                }
+            }
+        })
+    </script>
+}
