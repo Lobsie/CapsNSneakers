@@ -60,7 +60,7 @@ namespace Imi.Project.Api.Controllers
         /// Gets all caps paged
         /// </summary>
         /// <param name="filter">Optional filtering</param>
-        /// <returns></return>
+        /// <returns />
         [HttpGet("overview")]
         [Authorize(Policy = CustomPolicies.CanRead)]
         [ProducesResponseType(StatusCodes.Status200OK)]

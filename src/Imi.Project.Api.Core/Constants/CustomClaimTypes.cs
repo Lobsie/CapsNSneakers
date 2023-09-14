@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Imi.Project.Api.Core.Constants
+﻿namespace Imi.Project.Api.Core.Constants
 {
     public static class CustomClaimTypes
     {
